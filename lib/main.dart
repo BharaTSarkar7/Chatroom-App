@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:chatroom/features/landing/screens/landing_screen.dart';
 import 'package:chatroom/firebase_options.dart';
 import 'package:chatroom/responsive/mobile_screen_layout.dart';
 import 'package:chatroom/responsive/responsive_layout.dart';
 import 'package:chatroom/responsive/web_screen_layout.dart';
+import 'package:chatroom/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -34,9 +36,8 @@ class MyApp extends StatelessWidget {
       theme: appTheme.light,
       darkTheme: appTheme.dark,
       themeMode: ThemeMode.dark,
-      home: const ResponsiveLayout(
-          mobileScreenLayout: MobileScreenLayout(),
-          webScreenLayout: WebScreenLayout()),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: const LandingScreen(),
     );
   }
 }
