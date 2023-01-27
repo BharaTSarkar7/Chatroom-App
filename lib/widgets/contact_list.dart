@@ -2,10 +2,7 @@ import 'package:chatroom/info.dart';
 import 'package:chatroom/screen/chats_screen.dart';
 import 'package:chatroom/utilis/theme.dart';
 import 'package:chatroom/widgets/avatar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ContactList extends StatelessWidget {
   const ContactList({super.key});
