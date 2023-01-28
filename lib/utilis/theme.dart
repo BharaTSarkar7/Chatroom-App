@@ -10,13 +10,15 @@ abstract class AppColors {
   static const textDark = Color(0xFF53585A);
   static const textLigth = Color(0xFFF5F5F5);
   static const textFaded = Color(0xFF9899A5);
-  static const iconLight = Color(0xFFB1B4C0);
-  static const iconDark = Color(0xFFB1B3C1);
+  static const iconLight = Color(0xFFf8f9fa);
+  static const iconDark = Color(0xFF343a40);
   static const textHighlight = blueSecondary;
   static const cardLight = Color(0xFFF9FAFE);
   static const cardDark = Color(0xFF303334);
   static const mobileBackgroundColorDark = Color(0xFF131C21);
   static const mobileBackgroundColorLight = Color(0xfffdfffc);
+  static const svgColorLight = Colors.white;
+  static const svgColorDark = Colors.black;
 }
 
 abstract class _LightColors {
@@ -42,6 +44,7 @@ class AppTheme {
 
   /// Light theme and its settings.
   ThemeData get light => ThemeData(
+        focusColor: AppColors.svgColorDark,
         primaryColor: AppColors.blueSecondary,
         brightness: Brightness.light,
         colorScheme: lightBase.colorScheme.copyWith(secondary: accentColor),
@@ -75,6 +78,7 @@ class AppTheme {
 
   /// Dark theme and its settings.
   ThemeData get dark => ThemeData(
+        focusColor: AppColors.svgColorLight,
         primaryColor: AppColors.purpleSecondary,
         brightness: Brightness.dark,
         colorScheme: darkBase.colorScheme.copyWith(secondary: accentColor),

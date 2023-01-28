@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:chatroom/features/landing/screens/landing_screen.dart';
+import 'package:chatroom/common/features/landing/screens/landing_screen.dart';
 import 'package:chatroom/firebase_options.dart';
 import 'package:chatroom/responsive/mobile_screen_layout.dart';
 import 'package:chatroom/responsive/responsive_layout.dart';
@@ -9,15 +9,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chatroom/utilis/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp(
-    appTheme: AppTheme(),
-  ));
+  runApp(
+    ProviderScope(
+      child: MyApp(
+        appTheme: AppTheme(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

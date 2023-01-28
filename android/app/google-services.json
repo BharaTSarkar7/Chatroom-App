@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "307118808259-somlce0mr3ne2tnho25tbnki6t8hcb6h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatroom",
+            "certificate_hash": "a04a35fa607dc76c8a56e5ce23eeb48d67878736"
+          }
+        },
+        {
           "client_id": "307118808259-6bj2lc5i6bdcglfmhdimqf2v85io2bpd.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "307118808259-6bj2lc5i6bdcglfmhdimqf2v85io2bpd.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "307118808259-nsdikajdoarem2kgk910n10gerkqve3o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chatroom"
+              }
             }
           ]
         }
