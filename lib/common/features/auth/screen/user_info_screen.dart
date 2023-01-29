@@ -1,19 +1,21 @@
 import 'dart:io';
 
+import 'package:chatroom/common/features/auth/controller/auth_controller.dart';
 import 'package:chatroom/utilis/image_picker.dart';
 import 'package:chatroom/widgets/avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserInfoScreen extends StatefulWidget {
+class UserInfoScreen extends ConsumerStatefulWidget {
   static const String routeName = '/user-info-screen';
   const UserInfoScreen({super.key});
 
   @override
-  State<UserInfoScreen> createState() => _UserInfoScreenState();
+  ConsumerState<UserInfoScreen> createState() => _UserInfoScreenState();
 }
 
-class _UserInfoScreenState extends State<UserInfoScreen> {
+class _UserInfoScreenState extends ConsumerState<UserInfoScreen> {
   final TextEditingController nameController = TextEditingController();
 
   File? image;
@@ -27,6 +29,16 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   void selectImage() async {
     image = await pickImageFromGallery(context);
     setState(() {});
+  }
+
+  void storeUserData() async {
+    String name = nameController.text.trim();
+
+    if (name.isNotEmpty) {
+      ref
+          .read(authControllerProvider)
+          .saveUserDataToFireBase(context, name, image);
+    }
   }
 
   @override
@@ -72,7 +84,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: storeUserData,
                       icon: const Icon(
                         CupertinoIcons.checkmark_alt_circle_fill,
                         size: 25,
