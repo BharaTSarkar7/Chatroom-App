@@ -1,11 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:chatroom/common/features/auth/controller/auth_controller.dart';
 import 'package:chatroom/common/features/landing/screens/landing_screen.dart';
+import 'package:chatroom/common/widgets/common_widgets.dart';
 import 'package:chatroom/firebase_options.dart';
 import 'package:chatroom/responsive/mobile_screen_layout.dart';
-import 'package:chatroom/responsive/responsive_layout.dart';
-import 'package:chatroom/responsive/web_screen_layout.dart';
 import 'package:chatroom/router.dart';
-import 'package:chatroom/screen/chats_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   final AppTheme appTheme;
   const MyApp({
     Key? key,
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chatroom',
@@ -43,7 +42,17 @@ class MyApp extends StatelessWidget {
       darkTheme: appTheme.dark,
       themeMode: ThemeMode.dark,
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const LandingScreen(),
+      home: ref.watch(userDataAuthProvider).when(
+          data: (user) {
+            if (user == null) {
+              return const LandingScreen();
+            }
+            return const MobileScreenLayout();
+          },
+          error: (error, stackTrace) {
+            return ErrorScreen(error: error.toString());
+          },
+          loading: () => const Loader()),
     );
   }
 }

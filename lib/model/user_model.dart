@@ -35,7 +35,7 @@ class UserModel {
         phoneNumber: map['phoneNumber'] as String,
         isOnline: map['isOnline'] as bool,
         groupId: List<String>.from(
-          (map['groupId'] as List<String>),
+          (map['groupId']),
         ));
   }
 }
