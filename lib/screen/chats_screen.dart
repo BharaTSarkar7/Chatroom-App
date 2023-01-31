@@ -9,6 +9,7 @@ import 'package:ionicons/ionicons.dart';
 import '../widgets/widgets.dart';
 
 class ChatScreen extends StatelessWidget {
+  static const String routeName = '/chat-screen';
   const ChatScreen({super.key});
 
   @override

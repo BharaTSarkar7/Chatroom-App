@@ -96,7 +96,7 @@ class AuthRepository {
           name: name,
           uid: uid,
           profilePic: photoUrl,
-          phoneNumber: auth.currentUser!.uid,
+          phoneNumber: auth.currentUser!.phoneNumber.toString(),
           isOnline: true,
           groupId: []);
 
@@ -108,7 +108,6 @@ class AuthRepository {
           MaterialPageRoute(builder: (context) => const MobileScreenLayout()),
           (route) => false);
       // don't forget to change route from mobile layout to responsive layout when web ui also done.
-
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
     }

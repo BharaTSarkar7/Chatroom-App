@@ -44,6 +44,7 @@ class AppTheme {
 
   /// Light theme and its settings.
   ThemeData get light => ThemeData(
+        useMaterial3: true,
         focusColor: AppColors.svgColorDark,
         primaryColor: AppColors.blueSecondary,
         brightness: Brightness.light,
@@ -59,7 +60,7 @@ class AppTheme {
           centerTitle: true,
           titleTextStyle: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 17,
+            fontSize: 18,
             color: AppColors.textDark,
           ),
           systemOverlayStyle: SystemUiOverlayStyle.dark,
@@ -71,13 +72,14 @@ class AppTheme {
         ),
         cardColor: _LightColors.card,
         primaryTextTheme: const TextTheme(
-          headline6: TextStyle(color: AppColors.textDark),
+          titleLarge: TextStyle(color: AppColors.textDark),
         ),
         iconTheme: const IconThemeData(color: AppColors.iconDark),
       );
 
   /// Dark theme and its settings.
   ThemeData get dark => ThemeData(
+        useMaterial3: true,
         focusColor: AppColors.svgColorLight,
         primaryColor: AppColors.purpleSecondary,
         brightness: Brightness.dark,
@@ -92,7 +94,7 @@ class AppTheme {
           centerTitle: true,
           titleTextStyle: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 17,
+            fontSize: 18,
           ),
           systemOverlayStyle: SystemUiOverlayStyle.light,
         ),
@@ -103,7 +105,7 @@ class AppTheme {
         ),
         cardColor: _DarkColors.card,
         primaryTextTheme: const TextTheme(
-          headline6: TextStyle(color: AppColors.textLigth),
+          titleLarge: TextStyle(color: AppColors.textLigth),
         ),
         iconTheme: const IconThemeData(color: AppColors.iconLight),
       );

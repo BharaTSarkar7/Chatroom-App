@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:chatroom/common/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:chatroom/widgets/glowing_action_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,7 @@ class __BottomNavigationBarState extends State<BottomNavigationBar> {
                   color: Theme.of(context).primaryColor,
                   icon: CupertinoIcons.add,
                   onPressed: () {
-                    print('TODO on new message');
+                    Navigator.pushNamed(context, SelectContactScreen.routeName);
                   },
                 ),
               ),
