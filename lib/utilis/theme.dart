@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppColors {
+  static const mobileChatBoxColor = Color(0xFF1F2C34);
   static const blueSecondary = Color(0xFF1e96fc);
   static const purpleSecondary = Color(0xFFe0aaff);
   static const dividerColor = Color(0xFF252D32);
@@ -51,7 +52,7 @@ class AppTheme {
         colorScheme: lightBase.colorScheme.copyWith(secondary: accentColor),
         visualDensity: visualDensity,
         textTheme:
-            GoogleFonts.mulishTextTheme().apply(bodyColor: AppColors.textDark),
+            GoogleFonts.poppinsTextTheme().apply(bodyColor: AppColors.textDark),
         backgroundColor: _LightColors.background,
         appBarTheme: lightBase.appBarTheme.copyWith(
           iconTheme: lightBase.iconTheme,
@@ -85,8 +86,8 @@ class AppTheme {
         brightness: Brightness.dark,
         colorScheme: darkBase.colorScheme.copyWith(secondary: accentColor),
         visualDensity: visualDensity,
-        textTheme:
-            GoogleFonts.interTextTheme().apply(bodyColor: AppColors.textLigth),
+        textTheme: GoogleFonts.poppinsTextTheme()
+            .apply(bodyColor: AppColors.textLigth),
         backgroundColor: _DarkColors.background,
         appBarTheme: darkBase.appBarTheme.copyWith(
           backgroundColor: Colors.transparent,

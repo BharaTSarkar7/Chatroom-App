@@ -1,5 +1,5 @@
 import 'package:chatroom/info.dart';
-import 'package:chatroom/screen/chats_screen.dart';
+import 'package:chatroom/common/features/chat/screen/chats_screen.dart';
 import 'package:chatroom/utilis/theme.dart';
 import 'package:chatroom/widgets/avatar.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,12 @@ class ContactList extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const ChatScreen(),
+                      builder: (context) => const ChatScreen(
+                        name: 'bhart',
+                        uid: '12345',
+                        photoUrl:
+                            'https://firebasestorage.googleapis.com/v0/b/chatroom-cec10.appspot.com/o/profilePic%2FUJ68JIYUMtcwJqR4lkgOwBlSoay2?alt=media&token=5115116e-0231-402a-a50a-6468348c47ec',
+                      ),
                     ),
                   );
                 },

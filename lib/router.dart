@@ -3,7 +3,7 @@ import 'package:chatroom/common/features/auth/screen/user_info_screen.dart';
 import 'package:chatroom/common/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:chatroom/common/widgets/error.dart';
 import 'package:chatroom/common/features/auth/screen/login_screen.dart';
-import 'package:chatroom/screen/chats_screen.dart';
+import 'package:chatroom/common/features/chat/screen/chats_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -23,7 +23,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (context) => const SelectContactScreen());
     case ChatScreen.routeName:
-      return MaterialPageRoute(builder: (context) => const ChatScreen());
+      final arguments = settings.arguments as Map<String, dynamic>;
+      final name = arguments['name'];
+      final uid = arguments['uid'];
+      final photoUrl = arguments['photoUrl'];
+      return MaterialPageRoute(
+          builder: (context) => ChatScreen(
+                name: name,
+                uid: uid,
+                photoUrl: photoUrl,
+              ));
     default:
       return MaterialPageRoute(
           builder: (context) => const Scaffold(

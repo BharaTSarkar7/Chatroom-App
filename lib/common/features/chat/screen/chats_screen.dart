@@ -1,16 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:chatroom/info.dart';
-import 'package:chatroom/utilis/theme.dart';
+import 'package:chatroom/common/features/auth/controller/auth_controller.dart';
+import 'package:chatroom/common/features/chat/widgets/bottom_chat_field.dart';
+import 'package:chatroom/common/widgets/common_widgets.dart';
+import 'package:chatroom/model/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
 
-import '../widgets/widgets.dart';
+import 'package:chatroom/utilis/theme.dart';
+
+import '../../../../widgets/widgets.dart';
 
 class ChatScreen extends StatelessWidget {
   static const String routeName = '/chat-screen';
-  const ChatScreen({super.key});
+  final String name;
+  final String uid;
+  final String photoUrl;
+  const ChatScreen({
+    Key? key,
+    required this.name,
+    required this.uid,
+    required this.photoUrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +43,9 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
         title: _AppBarTitle(
-          name: info[0]['name'].toString(),
-          photoUrl: info[0]['profilePic'].toString(),
+          name: name,
+          photoUrl: photoUrl,
+          uid: uid,
         ),
         actions: [
           Padding(
@@ -61,25 +74,26 @@ class ChatScreen extends StatelessWidget {
           const Expanded(
             child: ChatList(),
           ),
-          _ActionBar(),
+          const BottomChatField(),
         ],
       ),
     );
   }
 }
 
-class _AppBarTitle extends StatelessWidget {
+class _AppBarTitle extends ConsumerWidget {
+  final String name;
+  final String photoUrl;
+  final String uid;
   const _AppBarTitle({
     Key? key,
     required this.name,
     required this.photoUrl,
+    required this.uid,
   }) : super(key: key);
 
-  final String name;
-  final String photoUrl;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         Avatar.small(
@@ -89,27 +103,35 @@ class _AppBarTitle extends StatelessWidget {
           width: 16,
         ),
         Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 14),
-              ),
-              const SizedBox(height: 2),
-              const Text(
-                'Online now',
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
-                ),
-              ),
-            ],
+          child: StreamBuilder<UserModel>(
+            stream: ref.read(authControllerProvider).userDataById(uid),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Loader();
+              }
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    snapshot.data!.isOnline ? 'online' : 'offline',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textFaded,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
-        )
+        ),
       ],
     );
   }

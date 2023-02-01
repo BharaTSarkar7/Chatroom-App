@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:chatroom/model/user_model.dart';
-import 'package:chatroom/screen/chats_screen.dart';
+import 'package:chatroom/common/features/chat/screen/chats_screen.dart';
 import 'package:chatroom/utilis/snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,11 @@ class SelectContactRepository {
         if (selectedPhoneNumber == userData.phoneNumber) {
           isFound = true;
           // ignore: use_build_context_synchronously
-          Navigator.pushNamed(context, ChatScreen.routeName);
+          Navigator.pushNamed(context, ChatScreen.routeName, arguments: {
+            'name': userData.name,
+            'uid': userData.uid,
+            'photoUrl': userData.profilePic,
+          });
         }
       }
 
