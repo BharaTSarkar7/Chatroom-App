@@ -47,11 +47,11 @@ class SelectContactScreen extends ConsumerWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomIconButton(icon: Feather.search, onTap: () {}),
+            child: IconBorder(icon: Feather.search, onTap: () {}),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomIconButton(icon: Feather.more_vertical, onTap: () {}),
+            child: IconBorder(icon: Feather.more_vertical, onTap: () {}),
           ),
         ],
       ),

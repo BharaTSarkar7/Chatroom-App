@@ -1,23 +1,49 @@
-import 'package:chatroom/utilis/theme.dart';
-import 'package:chatroom/widgets/widgets.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-class BottomChatField extends StatefulWidget {
-  const BottomChatField({super.key});
+import 'package:chatroom/common/features/chat/controller/chat_controller.dart';
+import 'package:chatroom/utilis/theme.dart';
+
+class BottomChatField extends ConsumerStatefulWidget {
+  final String recieverUserId;
+  const BottomChatField({
+    super.key,
+    required this.recieverUserId,
+  });
 
   @override
-  State<BottomChatField> createState() => _BottomChatFieldState();
+  ConsumerState<BottomChatField> createState() => _BottomChatFieldState();
 }
 
-class _BottomChatFieldState extends State<BottomChatField> {
+class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   bool isSending = false;
+  final TextEditingController _messageController = TextEditingController();
+
+  void sendTextMessage() async {
+    if (isSending) {
+      ref.read(chatControllerProvider).sendTextMessage(
+          context, _messageController.text.trim(), widget.recieverUserId);
+      setState(() {
+        _messageController.text = '';
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _messageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: TextFormField(
+            controller: _messageController,
             onChanged: (value) {
               if (value.isNotEmpty) {
                 setState(() {
@@ -91,12 +117,16 @@ class _BottomChatFieldState extends State<BottomChatField> {
             right: 2,
             left: 2,
           ),
-          child: GlowingActionButton.advance(
-              iconSize: 22,
-              color: AppColors.accent,
-              icon: isSending ? Feather.send : Ionicons.ios_mic,
-              size: 40,
-              onPressed: () {}),
+          child: CircleAvatar(
+            backgroundColor: AppColors.accent,
+            radius: 25,
+            child: GestureDetector(
+              onTap: sendTextMessage,
+              child: Icon(
+                isSending ? Feather.send : Ionicons.ios_mic,
+              ),
+            ),
+          ),
         )
       ],
     );
