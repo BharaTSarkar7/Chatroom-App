@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class AppColors {
   static const mobileChatBoxColor = Color(0xFF1F2C34);
   static const blueSecondary = Color(0xFF1e96fc);
-  static const purpleSecondary = Color(0xFFe0aaff);
+  static const purpleSecondary = Color(0xFF957fef);
   static const dividerColor = Color(0xFF252D32);
   static const accent = Color(0xFFe71d36);
   static const textDark = Color(0xFF53585A);

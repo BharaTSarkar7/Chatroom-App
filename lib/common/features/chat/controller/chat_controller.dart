@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:chatroom/common/features/auth/controller/auth_controller.dart';
 import 'package:chatroom/model/chat_contact.dart';
+import 'package:chatroom/model/message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,5 +37,9 @@ class ChatController {
 
   Stream<List<ChatContact>> chatContacts() {
     return chatRepository.getChatContacts();
+  }
+
+  Stream<List<Message>> chatStream(String recieverUserId) {
+    return chatRepository.getChatStream(recieverUserId);
   }
 }

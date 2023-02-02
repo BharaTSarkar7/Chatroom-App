@@ -71,8 +71,10 @@ class ChatScreen extends StatelessWidget {
       body: Column(
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          const Expanded(
-            child: ChatList(),
+          Expanded(
+            child: ChatList(
+              recieverUserId: uid,
+            ),
           ),
           BottomChatField(
             recieverUserId: uid,

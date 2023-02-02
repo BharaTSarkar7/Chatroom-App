@@ -30,6 +30,7 @@ class ContactList extends ConsumerWidget {
                 return Column(
                   children: [
                     InkWell(
+                      splashColor: Theme.of(context).primaryColor,
                       onTap: () {
                         Navigator.pushNamed(
                           context,

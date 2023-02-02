@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:chatroom/common/enums/messages_enum.dart';
-import 'package:chatroom/info.dart';
 
 import 'package:chatroom/model/chat_contact.dart';
 import 'package:chatroom/model/message.dart';
@@ -52,6 +51,25 @@ class ChatRepository {
             timeSent: chatContact.timeSent));
       }
       return contacts;
+    });
+  }
+
+  Stream<List<Message>> getChatStream(String recieverUserId) {
+    return firestore
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('chats')
+        .doc(recieverUserId)
+        .collection('messages')
+        .orderBy('timeSent')
+        .snapshots()
+        .map((event) {
+      List<Message> messages = [];
+
+      for (var document in event.docs) {
+        messages.add(Message.fromMap(document.data()));
+      }
+      return messages;
     });
   }
 

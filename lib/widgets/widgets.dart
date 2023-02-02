@@ -1,7 +1,7 @@
 export 'avatar.dart';
 export 'custom_icon_button.dart';
-export 'contact_list.dart';
-export 'chat_list.dart';
+export '../common/features/chat/widgets/contact_list.dart';
+export '../common/features/chat/widgets/chat_list.dart';
 export 'message_card.dart';
 export 'glowing_action_button.dart';
 export 'web_profile_bar.dart';
