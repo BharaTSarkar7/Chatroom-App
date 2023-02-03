@@ -1,21 +1,51 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:chatroom/common/features/auth/controller/auth_controller.dart';
 import 'package:chatroom/common/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:chatroom/widgets/glowing_action_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
 
 import 'package:chatroom/utilis/global_variable.dart';
 
-class MobileScreenLayout extends StatefulWidget {
+class MobileScreenLayout extends ConsumerStatefulWidget {
   const MobileScreenLayout({super.key});
 
   @override
-  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
+  ConsumerState<MobileScreenLayout> createState() => _MobileScreenLayoutState();
 }
 
-class _MobileScreenLayoutState extends State<MobileScreenLayout> {
+class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout>
+    with WidgetsBindingObserver {
   final ValueNotifier<int> pageIndex = ValueNotifier(0);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        ref.read(authControllerProvider).setUserState(true);
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.detached:
+      case AppLifecycleState.paused:
+        ref.read(authControllerProvider).setUserState(false);
+        break;
+    }
+  }
 
   void _onNavigationItemSelected(index) {
     pageIndex.value = index;
