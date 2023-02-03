@@ -2,7 +2,7 @@ export 'avatar.dart';
 export 'custom_icon_button.dart';
 export '../common/features/chat/widgets/contact_list.dart';
 export '../common/features/chat/widgets/chat_list.dart';
-export 'message_card.dart';
+export '../common/features/chat/widgets/message_card.dart';
 export 'glowing_action_button.dart';
 export 'web_profile_bar.dart';
 export 'web_chatapp_bar.dart';

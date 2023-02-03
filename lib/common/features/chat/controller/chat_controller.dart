@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
+import 'package:chatroom/common/enums/messages_enum.dart';
 import 'package:chatroom/common/features/auth/controller/auth_controller.dart';
 import 'package:chatroom/model/chat_contact.dart';
 import 'package:chatroom/model/message.dart';
@@ -33,6 +36,24 @@ class ChatController {
               recieverUserId: recieverUserId,
               senderUser: value!,
             ));
+  }
+
+  void sendFileMessage(
+    BuildContext context,
+    File file,
+    String recieverUserId,
+    MessageEnum messageEnum,
+  ) {
+    ref.read(userDataAuthProvider).whenData(
+          (value) => chatRepository.sendFileMessage(
+            context: context,
+            file: file,
+            recieverUserId: recieverUserId,
+            senderUserData: value!,
+            messageEnum: messageEnum,
+            ref: ref,
+          ),
+        );
   }
 
   Stream<List<ChatContact>> chatContacts() {

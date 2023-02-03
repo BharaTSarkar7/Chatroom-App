@@ -56,7 +56,9 @@ class ContactList extends ConsumerWidget {
                             child: Text(
                               chatContactData.lastMessage,
                               style: const TextStyle(
-                                  fontSize: 15, color: AppColors.textFaded),
+                                  fontSize: 15,
+                                  color: AppColors.textFaded,
+                                  overflow: TextOverflow.ellipsis),
                             ),
                           ),
                           leading: Avatar.medium(
