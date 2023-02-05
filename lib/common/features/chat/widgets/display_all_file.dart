@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chatroom/common/features/chat/widgets/video_player.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chatroom/common/enums/messages_enum.dart';
@@ -22,6 +23,10 @@ class DisplayAllFile extends StatelessWidget {
               fontSize: 16,
             ),
           )
-        : CachedNetworkImage(imageUrl: message);
+        : type == MessageEnum.video
+            ? CustomVideoPlayer(
+                videoUrl: message,
+              )
+            : CachedNetworkImage(imageUrl: message);
   }
 }
