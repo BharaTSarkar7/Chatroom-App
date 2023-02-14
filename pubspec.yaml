@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_unicons: ^0.0.6
   flutter_vector_icons: ^2.0.0
+  giphy_picker: ^3.0.1
   google_fonts: ^3.0.1
   image_picker: ^0.8.6+1
   intl: ^0.17.0

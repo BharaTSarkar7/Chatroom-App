@@ -27,6 +27,8 @@ class DisplayAllFile extends StatelessWidget {
             ? CustomVideoPlayer(
                 videoUrl: message,
               )
-            : CachedNetworkImage(imageUrl: message);
+            : type == MessageEnum.gif
+                ? CachedNetworkImage(imageUrl: message)
+                : CachedNetworkImage(imageUrl: message);
   }
 }

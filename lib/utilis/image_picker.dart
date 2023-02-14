@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:chatroom/utilis/snackbar.dart';
+
 import 'package:flutter/cupertino.dart';
+import 'package:giphy_picker/giphy_picker.dart';
 import 'package:image_picker/image_picker.dart';
 
 Future<File?> pickImageFromGallery(BuildContext context) async {
@@ -34,4 +36,18 @@ Future<File?> pickVideoFromGallery(BuildContext context) async {
   }
 
   return video;
+}
+
+pickGIF(BuildContext context) async {
+  GiphyGif? gif;
+  try {
+    gif = await GiphyPicker.pickGif(
+      context: context,
+      apiKey: '9u7iKtW3vt7iQeQD06lZJYpGZ53s3Svw',
+    );
+  } catch (e) {
+    showSnackBar(context: context, content: e.toString());
+  }
+
+  return gif;
 }
